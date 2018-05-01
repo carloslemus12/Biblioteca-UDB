@@ -19,10 +19,13 @@
                     <a class="nav-link" href="#">Ver lista de libros</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Mis prestamos</a>
+                    <a class="nav-link" href="#">Libros prestados</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Libros reservados</a>
                 </li>
             <% } else { %>
-            
+                
             <% } %>
             <li class="nav-item d-block d-lg-none">
                 <a class="nav-link" href="/Biblioteca_UDB/actions/cerrarsesion.jsp">Cerrar sesion</a>
