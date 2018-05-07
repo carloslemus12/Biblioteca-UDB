@@ -13,9 +13,11 @@
 <%
     if (session.getAttribute("usuario") == null){
         session.setAttribute("erro_login", "Debe de iniciar session");
-        response.sendRedirect("/Biblioteca_UDB/index.jsp");
+    %>
+        <c:redirect url="/index.jsp"/>
+    <%
     }
-    
+
     Usuario usuario = (Usuario)session.getAttribute("usuario");
 %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
