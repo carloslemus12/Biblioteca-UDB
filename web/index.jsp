@@ -33,12 +33,12 @@
         <div class="h-100 container d-flex justify-content-center align-items-center">
             <div class="row">
                 <div class="col">
-                    <div class="card border border-primary shadow">
-                        <div class="card-header bg-primary text-white text-center">
-                            Sistema biblioteca
+                    <div class="card border border-dark bg-transparent shadow">
+                        <div class="card-header bg-transparent text-white text-center">
+                            <img src="img/books.svg" />
                         </div>
                         <form id="form_login">
-                            <div class="card-body">
+                            <div class="card-body bg-white">
                                     <div class="form-group">
                                         <label for="txt_email">Correo electronico:</label>
                                         <input type="email" class="form-control" id="txt_email" placeholder="Correo electronico" name="email" style="min-width: 250px;" />
@@ -65,7 +65,7 @@
                                 <div id="cont_error"></div>
                                 <a href="/Biblioteca_UDB/registrarse.jsp" class="text-danger">Registrarse</a>
                             </div>
-                            <div class="card-footer text-muted p-0">
+                            <div class="card-footer border border-primary text-muted p-0">
                                 <button id="btn_login" class="btn btn-primary m-0 rounded-0" style="width: 100%;" type="submit">Iniciar sesion</button>
                             </div>
                         </form>

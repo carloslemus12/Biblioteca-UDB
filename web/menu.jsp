@@ -16,7 +16,7 @@
         <ul class="navbar-nav mr-auto">
             <% if (((Usuario)session.getAttribute("usuario")).getTipo_usuario() == 3){ %>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Ver lista de libros</a>
+                    <a class="nav-link" href="/Biblioteca_UDB/lector/libros.jsp">Ver lista de libros</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#">Libros prestados</a>

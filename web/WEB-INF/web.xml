@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
+    <filter>
+        <filter-name>SessionPassword</filter-name>
+        <filter-class>SessionPassword</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>SessionPassword</filter-name>
+        <url-pattern>/actions/cuenta.jsp</url-pattern>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>SessionPassword</filter-name>
+        <url-pattern>/actions/clave.jsp</url-pattern>
+    </filter-mapping>
+    <session-config>
+        <session-timeout>
+            30
+        </session-timeout>
+    </session-config>
+    <error-page>
+        <error-code>404</error-code>
+        <location>/errores/notFound.jsp</location>
+    </error-page>
+    <error-page>
+        <error-code>400</error-code>
+        <location>/errores/badRequest.jsp</location>
+    </error-page>
+    <error-page>
+        <location>/general-error.jsp</location>
+    </error-page>
+</web-app>

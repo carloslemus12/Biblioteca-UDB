@@ -17,7 +17,7 @@ public abstract class Conexion {
     private PreparedStatement sentencia;
             
     // Base de datos
-    private static String base = "poocatedra";
+    private static String base = "poocatedra_v1";
     
     // Informacion de la conexion
     private static String sqlConexion = "jdbc:mysql://localhost/";

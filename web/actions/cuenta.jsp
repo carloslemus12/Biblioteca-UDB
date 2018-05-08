@@ -9,6 +9,7 @@
 <%@ taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql" %>
 <%
     Usuario usuario = (Usuario)session.getAttribute("usuario");
+    session.setAttribute("Clave_Valida", null);
  %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Context crossContext="true" debug="5" path="/Biblioteca_UDB" reloadable="true">
     <Logger className="org.apache.catalina.logger.FileLogger" prefix="localhost_." suffix=".txt" timestamp="true"/>
-    <Resource auth="Container" driverClassName="com.mysql.jdbc.Driver" name="jdbc/mysql" password="" type="javax.sql.DataSource" url="jdbc:mysql://localhost/poocatedra" username="root"/>
+    <Resource auth="Container" driverClassName="com.mysql.jdbc.Driver" name="jdbc/mysql" password="" type="javax.sql.DataSource" url="jdbc:mysql://localhost/poocatedra_v1" username="root"/>
 </Context>

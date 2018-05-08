@@ -20,8 +20,8 @@
     else
         titulo_like = "'%" + titulo + "%'";
     
-    if (autor.equals("")) autor = "''";
-    if (categoria.equals("")) categoria = "''";
+    if (autor.equals("") || autor.equals("-1")) autor = "''";
+    if (categoria.equals("") || categoria.equals("-1")) categoria = "''";
 %>
 <sql:query var="libros" dataSource="jdbc/mysql">
     SELECT libro.ID_Libro, libro.Titulo, libro.Imagen, libro.Descripcion, categoria.Categoria, concat(autor.Nombre, ' ', autor.Apellido) as Autor FROM libro inner join categoria on categoria.ID_Cat = libro.ID_cat inner join autor on autor.ID_Autor = libro.Id_Autor WHERE (libro.Titulo like <%= titulo_like %> or '<%= titulo %>' = '' ) and (autor.ID_Autor = <%= autor %> or <%= autor %> = '' ) and (categoria.ID_Cat = <%= categoria %> or <%= categoria %> = '' )

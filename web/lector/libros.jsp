@@ -44,6 +44,7 @@
                         <div class="input-group-text"><img src="../img/autor.svg" width="20px" height="20px" /></div>
                       </div>
                       <select name="autor" class="form-control">
+                        <option value="-1">Todos los autores</option>
                         <sql:query var="autores" dataSource="jdbc/mysql">
                             SELECT autor.ID_Autor, concat(autor.Nombre, ' ', autor.Apellido) as Autor FROM autor
                         </sql:query>
@@ -60,6 +61,7 @@
                         <div class="input-group-text"><img src="../img/categoria.svg" width="20px" height="20px" /></div>
                       </div>
                       <select name="categoria" class="form-control">
+                        <option value="-1">Todas las categorias</option>
                         <sql:query var="categorias" dataSource="jdbc/mysql">
                             SELECT * FROM categoria
                         </sql:query>
@@ -74,6 +76,40 @@
                 </div>
             </div>
         </form>
+        
+        <!-- Button trigger modal -->
+        <!-- Modal -->
+        <div class="modal fade" id="mdl_info" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+              <div class="modal-header bg-danger text-white">
+                <h5 class="modal-title" id="tittle-libro">Informacion</h5>
+                <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body p-0">
+                <div class="card text-center">
+                    <div class="card-header">
+                        <ul class="nav nav-tabs card-header-tabs">
+                            <li class="nav-item">
+                                <a id="btn-notas" url="" class="nav-link active" href="#">Notas</a>
+                            </li>
+                            <li class="nav-item">
+                                <a id="btn-temas" url="" class="nav-link" href="#">Temas</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="card-body">
+                        <div id="list-info" class="list-group">
+                            
+                        </div>
+                    </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
         
         <!-- Modal structure -->
         <div id="modal"> <!-- data-iziModal-fullscreen="true"  data-iziModal-title="Welcome"  data-iziModal-subtitle="Subtitle"  data-iziModal-icon="icon-home" -->
@@ -127,14 +163,27 @@
         
         <script src="../js/pagination.js"></script>
         <script>
-            
             function libros_filtro(){
                 $.get( "/Biblioteca_UDB/actions/libros.jsp", $('#form-libros').serialize(), function( data ) {
-                    var libros = jQuery.parseJSON(data.trim());
+                       var libros = jQuery.parseJSON(data.trim());
                     libros.splice(-1,1);
 
                     var container = $('#pagination-demo1');
 
+                    var count = Object.keys(libros).length;
+                    
+                    if (count <= 0){
+                        $('#cont').html( "<div class='jumbotron jumbotron-fluid bg-dark text-white'>" +
+                                "<div class='container'>" +
+                                  "<h1 class='display-4'>No hay libros disponibles</h1>" +
+                                  "<p class='lead'>Disculpe las molestias pero no hay libros disponibles por el momento</p>" +
+                                "</div>" +
+                            "</div>");
+                        
+                        $('#pagination-demo1').html("");
+                        return;
+                    }
+                    
                     var options = {
                         dataSource: libros,
                         callback: function (response, pagination) {
@@ -144,7 +193,7 @@
                                     dataHtml += '<div class="card bg-transparent border-dark mb-3" style="background:url(../img/wood.jpg)">';
                                     dataHtml += "<div class='card-header border-dark text-center text-white'><strong>" + item.titulo + "</strong></div>";
                                     dataHtml += "<div class='card-body text-success'>";
-                                    dataHtml += (item.img === "")? "<img src='../img/no-img.svg' />" : item.img; 
+                                    dataHtml += "<a class='icon-libro' indice-titulo=\""+ item.titulo +"\" indice-libro="+ item.id +" href='#' url='/Biblioteca_UDB/lector/libroNota.jsp?id=" + item.id + "'  data-toggle='modal' data-target='#mdl_info' >" + ((item.img === "")? "<img src='../img/no-img.svg' />" : item.img) + "</a>"; 
                                     dataHtml += "</div>";
                                     dataHtml += "<div class='card-footer bg-dark border-dark d-flex justify-content-around'>";
 
@@ -173,7 +222,21 @@
                 $.get( "/Biblioteca_UDB/actions/libros.jsp", function( data ) {
                     var libros = jQuery.parseJSON(data.trim());
                     libros.splice(-1,1);
-
+                    
+                    var count = Object.keys(libros).length;
+                    
+                    if (count <= 0){
+                        $('#cont').html( "<div class='jumbotron jumbotron-fluid bg-dark text-white'>" +
+                                "<div class='container'>" +
+                                  "<h1 class='display-4'>No hay libros disponibles</h1>" +
+                                  "<p class='lead'>Disculpe las molestias pero no hay libros disponibles por el momento</p>" +
+                                "</div>" +
+                            "</div>");
+                        
+                        $('#pagination-demo1').html("");
+                        return;
+                    }
+                    
                     var container = $('#pagination-demo1');
 
                     var options = {
@@ -185,7 +248,7 @@
                                     dataHtml += '<div class="card bg-transparent border-dark mb-3" style="background:url(../img/wood.jpg)">';
                                     dataHtml += "<div class='card-header border-dark text-center text-white'><strong>" + item.titulo + "</strong></div>";
                                     dataHtml += "<div class='card-body text-success'>";
-                                    dataHtml += (item.img === "")? "<img src='../img/no-img.svg' />" : item.img; 
+                                    dataHtml += "<a class='icon-libro' indice-titulo=\""+ item.titulo +"\" indice-libro="+ item.id +" href='#' url='/Biblioteca_UDB/lector/libroNota.jsp?id=" + item.id + "' data-toggle='modal' data-target='#mdl_info' >" + ((item.img === "")? "<img src='../img/no-img.svg' />" : item.img) + "</a>"; 
                                     dataHtml += "</div>";
                                     dataHtml += "<div class='card-footer bg-dark border-dark d-flex justify-content-around'>";
 
@@ -211,6 +274,114 @@
             }
             
             $(document).ready(function(){
+                $('#btn-notas').click(function(){
+                    if (!$(this).hasClass('active')){
+                        $('#btn-temas').removeClass('active');
+                        $(this).addClass('active');
+                        
+                        var url = $(this).attr('url');
+                        var  $info = $('#list-info');
+                    
+                        $info.html("");
+
+                        $.get(url, function(data){
+                            var notas = jQuery.parseJSON(data.trim());                        
+                            notas.splice(-1,1);
+
+                            var count = Object.keys(notas).length;
+
+                            if (count > 0) {
+                                $.each(notas, function(i, item) {
+                                    $info.html(
+                                        "<span class='list-group-item list-group-item-action flex-column align-items-start active'>"+
+                                        "<div class='d-flex w-100 justify-content-between'>" +
+                                        "<h5 class='mb-1'><img src='../img/notepad.svg' style='width:30px;height:30px;' /></h5>" +
+                                        "</div>" +
+                                        "<p class='mb-1'>" + item.nota + ".</p>" +
+                                        "</a>"
+                                    );
+                                });
+                            } else {
+                                $info.html("<center><img src='../img/sad.svg' style='max-widht:10rem;max-height:10rem;' /></center><p class='h3 text-muted'>No hay notas</p>");
+                            }
+
+                        });
+                    }
+        
+                    return false;
+                });
+                
+                $('#btn-temas').click(function(){
+                    if (!$(this).hasClass('active')){
+                        $('#btn-notas').removeClass('active');
+                        $(this).addClass('active');
+                        
+                        var url = $(this).attr('url');
+                        var  $info = $('#list-info');
+                        
+                        $info.html("");
+
+                        $.get(url, function(data){
+                            var temas = jQuery.parseJSON(data.trim());                        
+                            temas.splice(-1,1);
+
+                            var count = Object.keys(temas).length;
+
+                            if (count > 0) {
+                                $.each(temas, function(i, item) {
+                                    $info.html(
+                                        "<span class='list-group-item list-group-item-action flex-column align-items-start active'>"+
+                                        "<div class='d-flex w-100 justify-content-between'>" +
+                                        "<h5 class='mb-1'>" + item.tema + "</h5>" +
+                                        "<small><img src='../img/theme.svg' style='width:30px;height:30px;' /></small>" +
+                                        "</div>" +
+                                        "<p class='mb-1'>" + item.descripcion + ".</p>" +
+                                        "</a>"
+                                    );
+                                });
+                            } else {
+                                $info.html("<center><img src='../img/sad.svg' style='max-widht:10rem;max-height:10rem;' /></center><p class='h3 text-muted'>No hay temas</p>");
+                            }
+
+                        });
+                    }
+        
+                    return false;
+                });
+                
+                $(document).on('click', '.icon-libro', function(){
+                    var url = $(this).attr('url');
+                    var  $info = $('#list-info');
+                    $('#btn-notas').attr('url', url);
+                    $('#btn-temas').attr('url', '/Biblioteca_UDB/lector/libroTemas.jsp?id='+$(this).attr('indice-libro'));
+                    
+                    $('#tittle-libro').html($(this).attr('indice-titulo'))
+                    $info.html("");
+                    
+                    $.get(url, function(data){
+                        var notas = jQuery.parseJSON(data.trim());                        
+                        notas.splice(-1,1);
+
+                        var count = Object.keys(notas).length;
+                        
+                        if (count > 0) {
+                            $.each(notas, function(i, item) {
+                                $info.html(
+                                    "<span class='list-group-item list-group-item-action flex-column align-items-start active'>"+
+                                    "<div class='d-flex w-100 justify-content-between'>" +
+                                    "<h5 class='mb-1'><img src='../img/notepad.svg' style='width:30px;height:30px;' /></h5>" +
+                                    "</div>" +
+                                    "<p class='mb-1'>" + item.nota + ".</p>" +
+                                    "</a>"
+                                );
+                            });
+                        } else {
+                            $info.html("<center><img src='../img/sad.svg' style='max-widht:10rem;max-height:10rem;' /></center><p class='h3 text-muted'>No hay notas</p>");
+                        }
+                        
+                    });
+                });
+                
                 $("#modal").iziModal({
                     title: 'El libro ha sido reservado con exito',
                     subtitle: 'Este mensaje se cerrara en 5 seg',

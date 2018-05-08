@@ -27,13 +27,17 @@
 
 <% if(validacion.valido()){ 
     if(usuario.getPassword().equals(clave)){
+   session.setAttribute("Clave_Valida", true);
 %>
         { "estado":"perfecto" }
 <%
     } else {
+    session.setAttribute("Clave_Valida", false);
 %>
         { "estado":"error", "errores":["La clave no coincide con la actual"] }
     <% } %>
-<%} else {%>
+<%} else {
+    session.setAttribute("Clave_Valida", false);
+%>
     { "estado":"error", "errores":<%= validacion.erroresJSON() %> }
 <% } %>
