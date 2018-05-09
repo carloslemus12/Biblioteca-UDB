@@ -1,0 +1,15 @@
+
+.container{
+    border: solid black 3px;
+    padding: 0;
+}
+#prestamo:nth-child(2n -1){
+    width: 100%;
+    border-bottom: solid black 2px;
+
+}
+#prestamo{
+   height: 120px;
+   padding-left: 1%;
+   padding-top: 1%;
+}

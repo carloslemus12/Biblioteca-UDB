@@ -1,0 +1,19 @@
+  .chosen-focus-input{
+        visibility: hidden;
+    }
+    span{
+     
+       margin-top: -8.5%;
+        position: absolute;
+    }
+    .contenedor{
+        width: 35%;
+        margin-left: 30%;
+        background-color: #1E88E5;
+        height: 500px;
+        padding-top: 1%;
+        padding-left: 1%;
+        padding-right: 1%;
+        border-radius: 15px;
+        margin-top: 5%;
+    }

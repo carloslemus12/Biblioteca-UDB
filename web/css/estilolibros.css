@@ -1,0 +1,27 @@
+*{
+    margin: 0;
+}
+
+.imagen{
+    width: 23%;
+    height: 450px;
+    margin-left: 20%;
+    margin-top: 2%;
+   margin-bottom: 2%;
+}
+
+
+.container-fluid:nth-child(2n){
+    background-color: white;
+   margin-left: 0%;
+    width: 100%;
+}
+.container-fluid{
+    background-color: grey;
+    border-bottom: solid black 3px;
+}
+#detalle{
+    margin-left: 50%;
+    position: absolute;
+    margin-top: -30%;
+}
