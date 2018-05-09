@@ -193,7 +193,7 @@
                                     dataHtml += '<div class="card bg-transparent border-dark mb-3" style="background:url(../img/wood.jpg)">';
                                     dataHtml += "<div class='card-header border-dark text-center text-white'><strong>" + item.titulo + "</strong></div>";
                                     dataHtml += "<div class='card-body text-success'>";
-                                    dataHtml += "<a class='icon-libro' indice-titulo=\""+ item.titulo +"\" indice-libro="+ item.id +" href='#' url='/Biblioteca_UDB/lector/libroNota.jsp?id=" + item.id + "'  data-toggle='modal' data-target='#mdl_info' >" + ((item.img === "")? "<img src='../img/no-img.svg' />" : item.img) + "</a>"; 
+                                    dataHtml += "<a class='icon-libro' indice-titulo=\""+ item.titulo +"\" indice-libro="+ item.id +" href='#' url='/Biblioteca_UDB/lector/libroNota.jsp?id=" + item.id + "'  data-toggle='modal' data-target='#mdl_info' >" + ((item.img === "")? "<img src='../img/no-img.svg' />" : "<img class='w-100' src='../imagenes/" + item.img + "' />") + "</a>"; 
                                     dataHtml += "</div>";
                                     dataHtml += "<div class='card-footer bg-dark border-dark d-flex justify-content-around'>";
 
@@ -248,7 +248,7 @@
                                     dataHtml += '<div class="card bg-transparent border-dark mb-3" style="background:url(../img/wood.jpg)">';
                                     dataHtml += "<div class='card-header border-dark text-center text-white'><strong>" + item.titulo + "</strong></div>";
                                     dataHtml += "<div class='card-body text-success'>";
-                                    dataHtml += "<a class='icon-libro' indice-titulo=\""+ item.titulo +"\" indice-libro="+ item.id +" href='#' url='/Biblioteca_UDB/lector/libroNota.jsp?id=" + item.id + "' data-toggle='modal' data-target='#mdl_info' >" + ((item.img === "")? "<img src='../img/no-img.svg' />" : item.img) + "</a>"; 
+                                    dataHtml += "<a class='icon-libro' indice-titulo=\""+ item.titulo +"\" indice-libro="+ item.id +" href='#' url='/Biblioteca_UDB/lector/libroNota.jsp?id=" + item.id + "' data-toggle='modal' data-target='#mdl_info' >" + ((item.img === "")? "<img src='../img/no-img.svg' />" : "<img class='w-100' src='../imagenes/" + item.img + "' />") + "</a>"; 
                                     dataHtml += "</div>";
                                     dataHtml += "<div class='card-footer bg-dark border-dark d-flex justify-content-around'>";
 
@@ -291,16 +291,18 @@
                             var count = Object.keys(notas).length;
 
                             if (count > 0) {
+                                var str = "";
                                 $.each(notas, function(i, item) {
-                                    $info.html(
-                                        "<span class='list-group-item list-group-item-action flex-column align-items-start active'>"+
+                                    
+                                str +=  "<span class='list-group-item list-group-item-action flex-column align-items-start active'>"+
                                         "<div class='d-flex w-100 justify-content-between'>" +
                                         "<h5 class='mb-1'><img src='../img/notepad.svg' style='width:30px;height:30px;' /></h5>" +
                                         "</div>" +
                                         "<p class='mb-1'>" + item.nota + ".</p>" +
-                                        "</a>"
-                                    );
+                                        "</span>";
+                                    
                                 });
+                                $info.html(str);
                             } else {
                                 $info.html("<center><img src='../img/sad.svg' style='max-widht:10rem;max-height:10rem;' /></center><p class='h3 text-muted'>No hay notas</p>");
                             }
@@ -328,17 +330,17 @@
                             var count = Object.keys(temas).length;
 
                             if (count > 0) {
+                                var str = "";
                                 $.each(temas, function(i, item) {
-                                    $info.html(
-                                        "<span class='list-group-item list-group-item-action flex-column align-items-start active'>"+
+                                    str += "<span class='list-group-item list-group-item-action flex-column align-items-start active'>"+
                                         "<div class='d-flex w-100 justify-content-between'>" +
                                         "<h5 class='mb-1'>" + item.tema + "</h5>" +
                                         "<small><img src='../img/theme.svg' style='width:30px;height:30px;' /></small>" +
                                         "</div>" +
                                         "<p class='mb-1'>" + item.descripcion + ".</p>" +
-                                        "</a>"
-                                    );
+                                        "</span>";
                                 });
+                                $info.html(str);
                             } else {
                                 $info.html("<center><img src='../img/sad.svg' style='max-widht:10rem;max-height:10rem;' /></center><p class='h3 text-muted'>No hay temas</p>");
                             }
@@ -358,6 +360,11 @@
                     $('#tittle-libro').html($(this).attr('indice-titulo'))
                     $info.html("");
                     
+                    if ($('#btn-temas').hasClass('active')){
+                        $('#btn-temas').removeClass('active');
+                        $('#btn-notas').addClass('active');
+                    }
+                    
                     $.get(url, function(data){
                         var notas = jQuery.parseJSON(data.trim());                        
                         notas.splice(-1,1);
@@ -365,16 +372,17 @@
                         var count = Object.keys(notas).length;
                         
                         if (count > 0) {
+                            var str = "";
                             $.each(notas, function(i, item) {
-                                $info.html(
-                                    "<span class='list-group-item list-group-item-action flex-column align-items-start active'>"+
+                                
+                            str += "<span class='list-group-item list-group-item-action flex-column align-items-start active'>"+
                                     "<div class='d-flex w-100 justify-content-between'>" +
                                     "<h5 class='mb-1'><img src='../img/notepad.svg' style='width:30px;height:30px;' /></h5>" +
                                     "</div>" +
                                     "<p class='mb-1'>" + item.nota + ".</p>" +
-                                    "</a>"
-                                );
+                                    "</span>";
                             });
+                            $info.html(str);
                         } else {
                             $info.html("<center><img src='../img/sad.svg' style='max-widht:10rem;max-height:10rem;' /></center><p class='h3 text-muted'>No hay notas</p>");
                         }
