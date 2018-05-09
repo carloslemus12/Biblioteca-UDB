@@ -19,10 +19,7 @@
                     <a class="nav-link" href="/Biblioteca_UDB/lector/libros.jsp">Ver lista de libros</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Libros prestados</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Libros reservados</a>
+                    <a class="nav-link" href="VerLibros.jsp">Mis libros</a>
                 </li>
             <% } else { %>
                 
@@ -36,7 +33,7 @@
             </li>
 
             <li class="nav-item d-block d-lg-none">
-                <a class="nav-link" href="/Biblioteca_UDB/confirmar/password.jsp?accion=2">Cambiar contraseña</a>
+                <a class="nav-link" href="/Biblioteca_UDB/confirmar/password.jsp?accion=2">Cambiar contraseÃ±a</a>
             </li>
         </ul>
         <div class="d-none flex-row justify-content-center d-lg-flex nav-item dropdown">
@@ -47,7 +44,7 @@
               <a class="dropdown-item" href="/Biblioteca_UDB/actions/cerrarsesion.jsp">Cerrar sesion</a>
               <div class="dropdown-divider"></div>
               <a class="dropdown-item" href="/Biblioteca_UDB/confirmar/password.jsp?accion=1">Mi cuenta</a>
-              <a class="dropdown-item" href="/Biblioteca_UDB/confirmar/password.jsp?accion=2">Cambiar contraseña</a>
+              <a class="dropdown-item" href="/Biblioteca_UDB/confirmar/password.jsp?accion=2">Cambiar contraseÃ±a</a>
             </div>
         </div>
     </div>
