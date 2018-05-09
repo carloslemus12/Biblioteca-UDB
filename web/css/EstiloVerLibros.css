@@ -1,0 +1,101 @@
+.Libro{
+    background: #3949AB;
+    width: 80%;
+    padding: 3%;
+    padding-right: 15%;
+    height: 585px;
+    margin-left: 9%;
+    margin-top: -1.5%;
+}
+
+.extender{
+    margin-top: 19%;
+    margin-left: 10%;
+}
+
+.extender1{
+    margin-top: 19%;
+    margin-left: 9%;
+}
+
+.imagen{
+    width: 40%;
+    height: 405px;
+}
+
+.divAutor{
+    margin-left: 43%;
+    margin-top: -57%;
+}
+
+.hAutor{
+    font-size: 1.3em;
+}
+
+.divEdicion{
+    margin-left: 43%;
+}
+
+.hEdicion{
+    font-size: 1.3em;
+}
+
+.divCategoria{
+    margin-left: 43%;
+}
+
+.hCategoria{
+    font-size: 1.3em;
+}
+
+.divImprenta{
+    margin-left: 43%;
+}
+
+.hImprenta{
+    font-size: 1.3em;
+}
+
+.divIsbn{
+    margin-left: 43%;
+}
+
+.hIsbn{
+    font-size: 1.3em;
+}
+
+.divDescrip{
+    margin-left: 43%;
+}
+
+.hDes{
+    font-size: 1.2em;
+}
+
+.divFecha{
+    margin-top: 2%;
+    margin-left: 7.5%;
+}
+
+.divFecha1{
+    margin-top: 2%;
+    margin-left: 7.7%;
+}
+
+/* Modales */
+
+.librosReservados{
+    margin-left: 13%;
+}
+
+.button{
+    margin-left: 17%;
+}
+
+.librosPrestados{
+   margin-left: 9.5%; 
+}
+
+.imagenVer{
+    width: 5%;
+}
